@@ -1,18 +1,25 @@
 # Netcup SCP WebService CLI
 
-A simple Python CLI tool to interact with [Netcup's SCP SOAP API](https://www.servercontrolpanel.de/WSEndUser?wsdl).
-Allows you to manage virtual servers (VServers), route failover IPs, and access basic statistics.
+A simple Python CLI tool to interact with [Netcup's SCP SOAP API](https://www.servercontrolpanel.de/WSEndUser?wsdl). Allows you to manage virtual servers (VServers), route failover IPs, and access basic statistics.
 
 ## Features
 
 This script supports the following operations via an interactive CLI:
 
 * List VServers in your Netcup SCP account
-* Start or stop a VServer
-* Get the current state (online/offline) of a VServer
-* List the IP addresses assigned to a VServer
-* Change routing for a Failover IP (e.g., assign to a different VServer)
-* Generate a token to download VServer usage statistics (sCPU, traffic, etc.)
+* Start or stop a vServer
+* Get the current state (online/offline) of a vServer
+* List the IP addresses assigned to a vServer
+* Change routing for a Failover IP (e.g., assign to a different vServer)
+* Generate a token to download vServer usage statistics (CPU, traffic, etc.)
+* Reboot, shutdown, power off or reset vServer via ACPI
+* Get vServer uptime and nickname
+* Retrieve and set panel settings
+* Get and filter vServer logs
+* Add cloud VLAN interfaces
+* Manage passwords and login tokens
+
+Additional functionality may be added based on the full WSDL definitions.
 
 ---
 
@@ -20,7 +27,20 @@ This script supports the following operations via an interactive CLI:
 
 * Python 3.8+
 * The following Python packages:
+
   * `zeep` (for SOAP client support)
+
+Install dependencies via:
+
+```bash
+pip install -r requirements.txt
+```
+
+`requirements.txt`:
+
+```
+zeep
+```
 
 ---
 
@@ -29,8 +49,8 @@ This script supports the following operations via an interactive CLI:
 ### 1. Clone this Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/netcup.git
-cd netcup
+git clone https://github.com/YOUR_USERNAME/netcup-scp-cli.git
+cd netcup-scp-cli
 ```
 
 ### 2. Create a Virtual Environment (optional but recommended)
@@ -73,17 +93,18 @@ python scp-webservice.py
 Follow the prompts to:
 
 * Choose an action from the menu
-* Input necessary parameters (e.g. VServer selection, IPs, MAC address)
+* Input necessary parameters (e.g. vServer selection, IPs, MAC address)
 
 ---
 
 ## References
 
-* Netcup SOAP API Documentation: [https://helpcenter.netcup.com/en/wiki/server/scp-webservice/](https://helpcenter.netcup.com/en/wiki/server/scp-webservice/)
-* WSDL endpoint: [https://www.servercontrolpanel.de/WSEndUser?wsdl](https://www.servercontrolpanel.de/WSEndUser?wsdl)
+* Netcup SOAP API Help Center: [https://helpcenter.netcup.com/en/wiki/server/scp-webservice/](https://helpcenter.netcup.com/en/wiki/server/scp-webservice/)
+* Full WSDL API: [https://www.servercontrolpanel.de/WSEndUser?wsdl](https://www.servercontrolpanel.de/WSEndUser?wsdl)
+* XSD schema: [https://www.servercontrolpanel.de/SCP/WSEndUser?xsd=1](https://www.servercontrolpanel.de/SCP/WSEndUser?xsd=1)
 
 ---
 
 ## License
 
-MIT License.
+MIT License. See `LICENSE` file if provided.
