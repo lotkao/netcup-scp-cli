@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 ### 4. Set Your SCP Webservice Credentials
 
-Before running the script, export your SCP username and password as environment variables.
+Create a `.env` file using the .env_example file, providing your SCP username and password.
 
 ```bash
 export NETCUP_LOGIN="your-scp-username"

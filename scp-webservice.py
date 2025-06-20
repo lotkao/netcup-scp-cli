@@ -3,7 +3,7 @@ import sys
 import json
 import argparse
 import urllib.parse
-from datetime import datetime
+from dotenv import load_dotenv
 from zeep import Client
 from zeep.helpers import serialize_object
 from zeep.exceptions import Fault
@@ -11,6 +11,7 @@ from zeep.exceptions import Fault
 WSDL_URL = 'https://www.servercontrolpanel.de/WSEndUser?wsdl'
 
 # Load credentials
+load_dotenv() 
 LOGIN = os.getenv("NETCUP_LOGIN") or input("Enter NETCUP_LOGIN: ")
 PASSWORD = os.getenv("NETCUP_PASSWORD") or input("Enter NETCUP_PASSWORD: ")
 
