@@ -1,12 +1,12 @@
 # Netcup SCP WebService CLI
 
-A simple Python CLI tool to interact with [Netcup's SCP SOAP API](https://www.servercontrolpanel.de/WSEndUser?wsdl). Allows you to manage virtual servers (VServers), route failover IPs, and access basic statistics.
+A simple Python CLI tool to interact with [Netcup's SCP SOAP API](https://www.servercontrolpanel.de/WSEndUser?wsdl). Allows you to manage virtual servers (vServers), route failover IPs, and access basic statistics.
 
 ## Features
 
 This script supports the following operations via an interactive CLI:
 
-* List VServers in your Netcup SCP account
+* List vServers in your Netcup SCP account
 * Start or stop a vServer
 * Get the current state (online/offline) of a vServer
 * List the IP addresses assigned to a vServer
@@ -56,18 +56,17 @@ pip install -r requirements.txt
 
 ### 4. Set Your SCP Webservice Credentials
 
-Before running the script, export your SCP login name and API password as environment variables.
-**Important:** The SCP **webservice password is not the same as your control panel login password**. You must enable the SOAP API and set a specific password in the Netcup SCP panel.
+Before running the script, export your SCP username and password as environment variables.
 
 ```bash
-export NETCUP_LOGIN="your-login-username"
-export NETCUP_PASSWORD="your-soap-api-password"
+export NETCUP_LOGIN="your-scp-username"
+export NETCUP_PASSWORD="your-scp-password"
 ```
 
 Alternatively, you can provide them inline when running the script:
 
 ```bash
-NETCUP_LOGIN=your-login NETCUP_PASSWORD=your-password python scp-webservice.py
+NETCUP_LOGIN=your-scp-username NETCUP_PASSWORD=your-scp-password python scp-webservice.py
 ```
 
 ---
