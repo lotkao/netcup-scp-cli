@@ -30,18 +30,6 @@ Additional functionality may be added based on the full WSDL definitions.
 
   * `zeep` (for SOAP client support)
 
-Install dependencies via:
-
-```bash
-pip install -r requirements.txt
-```
-
-`requirements.txt`:
-
-```
-zeep
-```
-
 ---
 
 ## Getting Started
@@ -49,7 +37,7 @@ zeep
 ### 1. Clone this Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/netcup-scp-cli.git
+git clone https://github.com/lotkao/netcup-scp-cli.git
 cd netcup-scp-cli
 ```
 
