@@ -84,7 +84,19 @@ def prompt_inputs(params):
                 return {}
 
         elif param == "start" and 'getVServerLogEntries' in OPERATIONS:
-            val = input(f"Enter {param} (log entry index, starting at 0): ")
+            val = input("Which log entry to start with? (0 = most recent) [0]: ")
+            if not val:
+                val = "0"
+
+        elif param == "results" and 'getVServerLogEntries' in OPERATIONS:
+            val = input("Max log entries [10]: ")
+            if not val:
+                val = "10"
+
+        elif param == "language" and 'getVServerLogEntries' in OPERATIONS:
+            val = input("Language [en]: ")
+            if not val:
+                val = "en"
 
         else:
             val = input(f"Enter {param}: ")
