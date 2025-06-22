@@ -94,4 +94,4 @@ Follow the prompts to:
 
 ## License
 
-MIT License. See `LICENSE` file if provided.
+MIT License. See `LICENSE` file.
