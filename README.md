@@ -108,7 +108,8 @@ python scp-webservice.py --continue
 python scp-webservice.py --action getUserData --json
 
 # Non-interactive call with parameters
-python scp-webservice.py --action setVServerNickname --params '{"vservername": "v2201...", "vservernickname": "test"}'
+python scp-webservice.py --action vServerACPIReboot --params '{"vserverName": "v2201..."}' --json
+python scp-webservice.py --action setVServerNickname --params '{"vservername": "v2201...", "vservernickname": "test"}' --json
 ```
 
 ---
@@ -125,7 +126,7 @@ Some API methods require `vserverName` (with capital 'N') while others require `
 | getVServerUpdateNotification | getVServerLogEntryCount     |
 | stopVServer                  | getVServerLogEntries        |
 | startVServer                 | addCloudVLANInterface       |
-| vServerACPIReboot            | changeIPRouting             |
+| vServerACPIReboot            |                             |
 | vServerACPIShutdown          |                             |
 | vServerStart                 |                             |
 | vServerSuspend               |                             |
