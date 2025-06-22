@@ -21,7 +21,7 @@ client = Client(WSDL_URL)
 OPERATIONS = {
     'getUserData': [],
     'getVServers': [],
-    'getVServerInformation': ['vserverName'],
+    'getVServerInformation': ['vservername'],
     'getVServerIPs': ['vserverName'],
     'getVServerState': ['vserverName'],
     'getVServerUptime': ['vserverName'],
@@ -41,7 +41,7 @@ OPERATIONS = {
     'vServerReset': ['vserverName'],
     'vServerPoweroff': ['vserverName'],
     'addCloudVLANInterface': ['vservername', 'cloudvlanid', 'driver'],
-    'changeIPRouting': ['routedIP', 'routedMask', 'destinationvservername', 'destinationInterfaceMAC'],
+    'changeIPRouting': ['routedIP', 'routedMask', 'destinationVserverName', 'destinationInterfaceMAC'],
     'getVServerStatToken': ['vserverName'],
     'getPanelSettings': [],
     'setPanelSettings': ['settings'],
@@ -130,7 +130,7 @@ def call_method(method_name, params, json_output=False):
     except Exception as e:
         print(f"Error: {e}")
 
-def interactive_mode(json_output):
+def interactive_mode(json_output, loop=False):
     """Run the interactive CLI interface"""
     while True:
         print("\nAvailable Actions:")
@@ -145,20 +145,28 @@ def interactive_mode(json_output):
             method_name = list(OPERATIONS.keys())[choice - 1]
         except Exception:
             print("Invalid selection.")
+            if not loop:
+                break
             continue
 
         param_names = OPERATIONS[method_name]
         user_inputs = prompt_inputs(param_names)
         if param_names and not user_inputs:
+            if not loop:
+                break
             continue
 
         call_method(method_name, user_inputs, json_output)
+
+        if not loop:
+            break
 
 def main():
     parser = argparse.ArgumentParser(description="Netcup SCP SOAP CLI")
     parser.add_argument("--action", help="SOAP action to perform", choices=OPERATIONS.keys())
     parser.add_argument("--params", help="JSON string of parameters for the action", default="{}")
     parser.add_argument("--json", help="Output in JSON", action="store_true")
+    parser.add_argument("--continue", dest="loop", help="Keep returning to the main menu in interactive mode", action="store_true")
     args = parser.parse_args()
 
     if args.action:
@@ -173,7 +181,7 @@ def main():
             print("Invalid JSON passed to --params")
             sys.exit(1)
     else:
-        interactive_mode(args.json)
+        interactive_mode(args.json, loop=args.loop)
 
 if __name__ == "__main__":
     main()

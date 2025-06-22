@@ -56,7 +56,7 @@ pip install -r requirements.txt
 
 ### 4. Set Your SCP Webservice Credentials
 
-Create a `.env` file using the .env_example file, providing your SCP username and password.
+Create a `.env` file using the .env\_example file, providing your SCP username and password.
 
 ```bash
 export NETCUP_LOGIN="your-scp-username"
@@ -81,6 +81,59 @@ Follow the prompts to:
 
 * Choose an action from the menu
 * Input necessary parameters (e.g. vServer selection, IPs, MAC address)
+
+---
+
+## Flags / Command Line Options
+
+The following optional flags are available when running the script:
+
+| Flag         | Description                                                                 |
+| ------------ | --------------------------------------------------------------------------- |
+| `--action`   | Specify the SOAP operation to call directly (non-interactive mode).         |
+| `--params`   | JSON string of parameters to pass with `--action`.                          |
+| `--json`     | Output the result in formatted JSON instead of raw format.                  |
+| `--continue` | When in interactive mode, continue showing the menu after an action is run. |
+
+Examples:
+
+```bash
+# Run interactive mode, only once
+python scp-webservice.py
+
+# Run interactive mode in loop
+python scp-webservice.py --continue
+
+# Non-interactive call
+python scp-webservice.py --action getUserData --json
+
+# Non-interactive call with parameters
+python scp-webservice.py --action setVServerNickname --params '{"vservername": "v2201...", "vservernickname": "test"}'
+```
+
+---
+
+## Parameter Naming: `vserverName` vs `vservername`
+
+Some API methods require `vserverName` (with capital 'N') while others require `vservername` (with lowercase 'n'). This reflects how the parameters are defined in the Netcup SOAP WSDL.
+
+| Methods using `vserverName`  | Methods using `vservername` |
+| ---------------------------- | --------------------------- |
+| getVServerIPs                | getVServerInformation       |
+| getVServerState              | getVServerNickname          |
+| getVServerUptime             | setVServerNickname          |
+| getVServerUpdateNotification | getVServerLogEntryCount     |
+| stopVServer                  | getVServerLogEntries        |
+| startVServer                 | addCloudVLANInterface       |
+| vServerACPIReboot            | changeIPRouting             |
+| vServerACPIShutdown          |                             |
+| vServerStart                 |                             |
+| vServerSuspend               |                             |
+| vServerResume                |                             |
+| vServerRestore               |                             |
+| vServerReset                 |                             |
+| vServerPoweroff              |                             |
+| getVServerStatToken          |                             |
 
 ---
 
